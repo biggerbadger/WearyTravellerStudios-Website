@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weary Traveller Studios | Eurorack Synth Modules</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(to bottom, #0a0a0a, #1a1a2e, #2c1810);
+            color: #d4d4d4;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(180, 140, 80, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #b48c50;
+            text-shadow: 0 0 10px rgba(180, 140, 80, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d4d4d4;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: #b48c50;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(180, 140, 80, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: drift 60s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #b48c50;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(180, 140, 80, 0.6);
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #b48c50, #8b6f3e);
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 3px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(180, 140, 80, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(180, 140, 80, 0.6);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #b48c50;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: rgba(26, 26, 46, 0.6);
+            padding: 3rem;
+            border-radius: 8px;
+            border: 1px solid rgba(180, 140, 80, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #16213e, #1a1a2e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(180, 140, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '🎛️';
+            font-size: 8rem;
+            opacity: 0.3;
+        }
+
+        .product-details h3 {
+            font-size: 2rem;
+            color: #b48c50;
+            margin-bottom: 1rem;
+        }
+
+        .product-details p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #c0c0c0;
+        }
+
+        .specs {
+            background: rgba(10, 10, 10, 0.5);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            border-left: 3px solid #b48c50;
+        }
+
+        .specs h4 {
+            color: #b48c50;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .specs ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .specs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(180, 140, 80, 0.1);
+        }
+
+        .specs li:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: #b48c50;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(180, 140, 80, 0.3);
+        }
+
+        footer p {
+            color: #808080;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: #b48c50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #d4a770;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">WEARY TRAVELLER</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#modules">Modules</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>WEARY TRAVELLER STUDIOS</h1>
+            <p>Journey through sound. Handcrafted eurorack modules for the sonic wanderer.</p>
+            <a href="#modules" class="cta-button">EXPLORE MODULES</a>
+        </div>
+    </section>
+
+    <section id="modules" class="section">
+        <h2 class="section-title">Featured Module</h2>
+        <div class="product-showcase">
+            <div class="product-image"></div>
+            <div class="product-details">
+                <h3>The Wanderer VCO</h3>
+                <p>A precision voltage-controlled oscillator designed for those who seek clarity in the darkness. The Wanderer delivers rich, analog warmth with exceptional tracking stability across the entire frequency spectrum.</p>
+                
+                <div class="specs">
+                    <h4>Specifications</h4>
+                    <ul>
+                        <li>Analog triangle core with temperature compensation</li>
+                        <li>Simultaneous sine, triangle, sawtooth, and pulse outputs</li>
+                        <li>1V/octave tracking over 8+ octaves</li>
+                        <li>PWM with CV control</li>
+                        <li>Linear FM input</li>
+                        <li>Hard and soft sync</li>
+                        <li>12HP, 35mm depth</li>
+                        <li>+12V: 80mA, -12V: 70mA</li>
+                    </ul>
+                </div>
+
+                <div class="price">$299</div>
+                <a href="#contact" class="cta-button">INQUIRE NOW</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section" style="text-align: center;">
+        <h2 class="section-title">The Journey</h2>
+        <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: #c0c0c0;">
+            Like a weary traveller seeking shelter in the night, we craft instruments that provide sonic refuge. Each module is designed and assembled with care, embodying the spirit of exploration and the pursuit of unique tones. Our journey has just begun, but the path ahead holds infinite possibilities.
+        </p>
+    </section>
+
+    <section id="contact" class="section" style="text-align: center;">
+        <h2 class="section-title">Begin Your Journey</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; color: #c0c0c0;">
+            Ready to add The Wanderer to your rig? Have questions about our modules? Reach out and let's talk sound.
+        </p>
+        <a href="mailto:contact@wearytravellerstudios.com" class="cta-button">GET IN TOUCH</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Weary Traveller Studios. All rights reserved.</p>
+        <p>Handcrafted modules for the sonic explorer.</p>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+            <a href="#">Bandcamp</a>
+        </div>
+    </footer>
+</body>
+</html>
